@@ -1,9 +1,14 @@
 package org.springframework.samples.petclinic.repository.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.samples.petclinic.model.Appointment;
+import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.repository.AppointmentRespository;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +27,14 @@ public class JpaAppointmentRepositoryImpl implements AppointmentRespository {
 	        } } catch (Exception e) {
 	        	e.printStackTrace();
 	        }
+	}
+	@Override
+	public List<Appointment> getAppointmentsByVet(Vet v) {
+		// TODO Auto-generated method stub
+		 Query query = this.em.createQuery("FROM Appointment appointmet  WHERE vet =:v");
+	     query.setParameter("v", v);
+	     return query.getResultList();
+		
 	}
 
 }
