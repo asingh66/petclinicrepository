@@ -7,6 +7,8 @@ public class DailyAppointmentSlots {
 
 	private Date dateOfAppointment;
 	List <AppointmentSlot> slots;
+	
+	
 	public Date getDateOfAppointment() {
 		return dateOfAppointment;
 	}
