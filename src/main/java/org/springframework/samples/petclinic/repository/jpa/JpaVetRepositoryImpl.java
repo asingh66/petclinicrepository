@@ -19,8 +19,10 @@ import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.stereotype.Repository;
@@ -47,5 +49,14 @@ public class JpaVetRepositoryImpl implements VetRepository {
     public Collection<Vet> findAll() {
         return this.em.createQuery("SELECT distinct vet FROM Vet vet left join fetch vet.specialties ORDER BY vet.lastName, vet.firstName").getResultList();
     }
+
+
+	@Override
+	public Vet findVetById(int vetId) {
+		 Query query = this.em.createQuery("SELECT vet FROM Vet WHERE vet.id =:id");
+	        query.setParameter("id", vetId);
+	        return (Vet) query.getSingleResult();
+		
+	}
 
 }

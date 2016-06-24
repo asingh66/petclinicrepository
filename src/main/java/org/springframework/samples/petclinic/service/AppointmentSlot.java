@@ -6,16 +6,10 @@ import org.springframework.samples.petclinic.model.Appointment;
 
 public class AppointmentSlot {
 
-	private Date appointmentDate;
 	private int slot;
 	private Appointment appointment;
-	private boolean isAvailable;
-	public Date getAppointmentDate() {
-		return appointmentDate;
-	}
-	public void setAppointmentDate(Date appointmentDate) {
-		this.appointmentDate = appointmentDate;
-	}
+	private String isAvailable;
+
 	public int getSlot() {
 		return slot;
 	}
@@ -28,10 +22,10 @@ public class AppointmentSlot {
 	public void setAppointment(Appointment appointment) {
 		this.appointment = appointment;
 	}
-	public boolean isAvailable() {
+	public String isAvailable() {
 		return isAvailable;
 	}
-	public void setAvailable(boolean isAvailable) {
+	public void setAvailable(String isAvailable) {
 		this.isAvailable = isAvailable;
 	}
 	
