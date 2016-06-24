@@ -86,4 +86,10 @@ public class JdbcVetRepositoryImpl implements VetRepository {
         }
         return vets;
     }
+
+	@Override
+	public Vet findVetById(int vetId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
