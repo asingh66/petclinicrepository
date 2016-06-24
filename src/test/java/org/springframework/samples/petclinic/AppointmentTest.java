@@ -13,6 +13,7 @@ import org.springframework.samples.petclinic.repository.AppointmentRespository;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -37,6 +38,7 @@ public class AppointmentTest {
 	
 	@Test
 	@Transactional
+	@Rollback(false)
 	public void createAppointment() {
 		Owner betty = or.findById(2);
 		Vet vet = vr.findAll().iterator().next();
