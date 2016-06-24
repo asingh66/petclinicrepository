@@ -8,7 +8,7 @@ public class AppointmentSlot {
 
 	private int slot;
 	private Appointment appointment;
-	private String isAvailable;
+	private boolean isAvailable;
 
 	public int getSlot() {
 		return slot;
@@ -22,11 +22,26 @@ public class AppointmentSlot {
 	public void setAppointment(Appointment appointment) {
 		this.appointment = appointment;
 	}
-	public String isAvailable() {
+	public boolean isAvailable() {
 		return isAvailable;
 	}
-	public void setAvailable(String isAvailable) {
+	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (! (o instanceof AppointmentSlot))
+			return false;
+		if (slot == ((AppointmentSlot)o).slot)
+			return true;
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		return slot;
 	}
 	
 	

@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -30,23 +31,35 @@ public class AppointmentServiceImpl implements AppointmentService {
 		// TODO Auto-generated method stub
 
 		Set<Appointment> appointments = vetRepository.findVetById(v.getId()).getAppointments();
-
-		if (appointments.size() == 0) {
-			return null;
-		}
-		DailyAppointmentSlots da = new DailyAppointmentSlots();
-		List<AppointmentSlot> slots = null;
-		da.setDateOfAppointment(today);
+		Set<AppointmentSlot> slotSet = new HashSet();
 		for (Appointment a : appointments) {
 			if (a.getAppointmentDate() == today) {
 				AppointmentSlot newSlot = new AppointmentSlot();
 				newSlot.setAppointment(a);
-				newSlot.setSlot(Integer.parseInt(a.getSlot()));
-				newSlot.setAvailable(a.getStatus());
-				slots.add(newSlot);
+				newSlot.setSlot(a.getSlot());
+				slotSet.add(newSlot);
 			}
 		}
-		da.setSlots(slots);
+		
+		for (int i=0;i<8;i++) {
+			AppointmentSlot as = new AppointmentSlot();
+			as.setSlot(i+9);
+			Appointment tempAppointment = new Appointment();
+			tempAppointment.setAppointmentDate(today);
+			tempAppointment.setSlot(i+9);
+			as.setAppointment(tempAppointment);
+			if (slotSet.add(as)) {
+				as.setAvailable(true);
+			}
+			
+			
+		}
+		
+		DailyAppointmentSlots da = new DailyAppointmentSlots();
+		List<AppointmentSlot> slots = null;
+		da.setDateOfAppointment(today);
+		
+		da.setSlots(slotSet);
 		return da;
 	}
 
@@ -69,4 +82,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 			ax.setSlot("1");
 			return ax;
 		}
+	
+	
 }

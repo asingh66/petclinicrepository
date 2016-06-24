@@ -15,7 +15,7 @@ public class Appointment extends BaseEntity {
     
 	@Column(name = "apt_date")
 	Date appointmentDate;
-	String slot;
+	int slot;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "owner_id", nullable = false)
 	Owner owner;
@@ -34,10 +34,10 @@ public class Appointment extends BaseEntity {
 	public void setAppointmentDate(Date appointmentDate) {
 		this.appointmentDate = appointmentDate;
 	}
-	public String getSlot() {
+	public int getSlot() {
 		return slot;
 	}
-	public void setSlot(String slot) {
+	public void setSlot(int slot) {
 		this.slot = slot;
 	}
 	
@@ -68,5 +68,8 @@ public class Appointment extends BaseEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	
 	
 }

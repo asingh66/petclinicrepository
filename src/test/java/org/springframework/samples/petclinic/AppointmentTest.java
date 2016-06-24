@@ -47,7 +47,7 @@ public class AppointmentTest {
 		a.setOwner(betty);
 		a.setPet(p);
 		a.setVet(vet);
-		a.setSlot("9");
+		a.setSlot(9);
 		a.setStatus("ACTIVE");
 		
 		as.save(a);
