@@ -10,4 +10,6 @@ public interface AppointmentRespository {
 	public void save(Appointment a);
 	
 	public List<Appointment> getAppointmentsByVet(Vet v);
+	
+	public Appointment findById(int id);
 }
