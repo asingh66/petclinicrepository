@@ -109,5 +109,11 @@ public class ClinicServiceImpl implements ClinicService {
         return vetRepository.findAll();
     }
 
+	@Override
+	public Collection<Owner> findOwners() {
+		// TODO Auto-generated method stub
+		return ownerRepository.findAll();
+	}
+
 
 }

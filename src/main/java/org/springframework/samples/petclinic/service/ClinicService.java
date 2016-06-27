@@ -47,5 +47,7 @@ public interface ClinicService {
     void saveOwner(Owner owner) throws DataAccessException;
 
     Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
+    
+    Collection<Owner> findOwners();
 
 }

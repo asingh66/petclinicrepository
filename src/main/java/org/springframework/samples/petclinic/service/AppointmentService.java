@@ -12,4 +12,6 @@ public interface AppointmentService {
 	public DailyAppointmentSlots getAvailaibleAppointmentForVet(Vet v, Date today);
 
 	public AppointmentXML getAppointment(int id) ;
+	
+	public void createAppointment(Appointment a);
 }
