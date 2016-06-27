@@ -21,8 +21,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.stereotype.Repository;
 
@@ -76,6 +79,13 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
             this.em.merge(owner);
         }
 
+    }
+
+    @Override
+    @Cacheable(value = "owners")
+    @SuppressWarnings("unchecked")
+    public Collection<Owner> findAll() {
+        return this.em.createQuery("SELECT distinct owner FROM Owners owner ORDER BY owner.lastName, owner.firstName").getResultList();
     }
 
 }
