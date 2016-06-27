@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.repository.jpa;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

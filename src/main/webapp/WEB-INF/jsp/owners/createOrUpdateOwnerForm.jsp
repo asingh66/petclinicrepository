@@ -41,7 +41,7 @@
                 </div>
             </div>
         </form:form>
-        <petclinic:pivotal/>
+        <petclinic:pivotal/> 
     </div>
 </div>
 <jsp:include page="../fragments/footer.jsp"/>
