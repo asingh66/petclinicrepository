@@ -155,4 +155,11 @@ public class JdbcOwnerRepositoryImpl implements OwnerRepository {
     }
 
 
+	@Override
+	public Collection<Owner> findAll() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
