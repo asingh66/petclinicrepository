@@ -2,21 +2,24 @@ package org.springframework.samples.petclinic.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class DailyAppointmentSlots {
 
 	private Date dateOfAppointment;
-	List <AppointmentSlot> slots;
+	Set <AppointmentSlot> slots;
+	
+	
 	public Date getDateOfAppointment() {
 		return dateOfAppointment;
 	}
 	public void setDateOfAppointment(Date dateOfAppointment) {
 		this.dateOfAppointment = dateOfAppointment;
 	}
-	public List<AppointmentSlot> getSlots() {
+	public Set<AppointmentSlot> getSlots() {
 		return slots;
 	}
-	public void setSlots(List<AppointmentSlot> slots) {
+	public void setSlots(Set<AppointmentSlot> slots) {
 		this.slots = slots;
 	}
 	

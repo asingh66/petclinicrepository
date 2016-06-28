@@ -9,23 +9,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="appointment")
 public class Appointment extends BaseEntity {
     
 	@Column(name = "apt_date")
+    @NotEmpty
 	Date appointmentDate;
-	String slot;
+    @NotEmpty
+	int slot;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "owner_id", nullable = false)
+    @NotEmpty
 	Owner owner;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "vet_id", nullable = false)
+    @NotEmpty
 	Vet vet;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pet_id", nullable = false)
+    @NotEmpty
 	Pet pet;
 	String status;
 	public Date getAppointmentDate() {
@@ -34,10 +41,10 @@ public class Appointment extends BaseEntity {
 	public void setAppointmentDate(Date appointmentDate) {
 		this.appointmentDate = appointmentDate;
 	}
-	public String getSlot() {
+	public int getSlot() {
 		return slot;
 	}
-	public void setSlot(String slot) {
+	public void setSlot(int slot) {
 		this.slot = slot;
 	}
 	
@@ -68,5 +75,8 @@ public class Appointment extends BaseEntity {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	
 	
 }

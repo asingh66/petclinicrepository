@@ -6,16 +6,10 @@ import org.springframework.samples.petclinic.model.Appointment;
 
 public class AppointmentSlot {
 
-	private Date appointmentDate;
 	private int slot;
 	private Appointment appointment;
 	private boolean isAvailable;
-	public Date getAppointmentDate() {
-		return appointmentDate;
-	}
-	public void setAppointmentDate(Date appointmentDate) {
-		this.appointmentDate = appointmentDate;
-	}
+
 	public int getSlot() {
 		return slot;
 	}
@@ -33,6 +27,21 @@ public class AppointmentSlot {
 	}
 	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (! (o instanceof AppointmentSlot))
+			return false;
+		if (slot == ((AppointmentSlot)o).slot)
+			return true;
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		return slot;
 	}
 	
 	

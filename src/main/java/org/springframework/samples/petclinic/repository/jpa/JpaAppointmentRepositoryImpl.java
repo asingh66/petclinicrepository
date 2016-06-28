@@ -36,5 +36,13 @@ public class JpaAppointmentRepositoryImpl implements AppointmentRespository {
 	     return query.getResultList();
 		
 	}
+	@Override
+	public Appointment findById(int id) {
+		 Query query = this.em.createQuery("SELECT appointment FROM Appointment appointment WHERE appointment.id =:id");
+	     query.setParameter("id", id);
+	     return (Appointment) query.getSingleResult();
+	}
+	
+	
 
 }
