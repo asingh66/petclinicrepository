@@ -15,24 +15,11 @@
 <jsp:include page="../fragments/htmlHeader.jsp" />
 
 <body>
+<<<<<<< HEAD
 <petclinic:bodyHeader menuName="vets"/>
 <div class="container-fluid">
     <div class="container xd-container">
         <h2>Appointment List</h2>
-	<petclinic:bodyHeader menuName="vets" />
-	<div class="container-fluid">
-		<div class="container xd-container">
-			<h2>Appointment</h2>
-			
- 			<table>
-				<tr>
-					<td>Owner Name:</td>
-					<td><form:select id="ownerDD" path="owners" >
-					<form:option value="NONE" label="--- Select ---"/>
-							<c:forEach items="${owners}" var="owner">
-							<form:option value="${owner.id}">${owner.firstName} ${owner.lastName}</form:option>
-
-
 
         <datatables:table id="apts" data="${aptlist}" row="apt" cssClass="table table-striped"
                           pageable="false" info="false">
@@ -58,6 +45,23 @@
                     <c:out value="${apt.pet}"/>
             </datatables:column>
         </datatables:table>
+=======
+	<petclinic:bodyHeader menuName="vets" />
+	<div class="container-fluid">
+		<div class="container xd-container">
+			<h2>Appointment</h2>
+			
+ 			<table>
+				<tr>
+					<td>Owner Name:</td>
+					<td><form:select id="ownerDD" path="owners" >
+					<form:option value="NONE" label="--- Select ---"/>
+							<c:forEach items="${owners}" var="owner">
+							<form:option value="${owner.id}">${owner.firstName} ${owner.lastName}</form:option>
+>>>>>>> branch 'JavaJune2016' of https://github.com/asingh66/petclinicrepository
+
+
+
 							</c:forEach>
 						</form:select></td>
 				</tr><br>
