@@ -37,6 +37,13 @@
                     <c:out value="${pet.name}"/>
                 </c:forEach>
             </datatables:column>
+            <datatables:column title=" Appointment" cssStyle="width: 100px;">
+            <spring:url value="/ownerListPage/${owner.id}" var="updateAppointment" />
+            <button class="btn btn-info" 
+                                          onclick="location.href='${updateAppointment}'">Add/Update</button>
+            
+            </datatables:column>
+            
             <datatables:export type="pdf" cssClass="btn" cssStyle="height: 25px;"/>
         </datatables:table>
 

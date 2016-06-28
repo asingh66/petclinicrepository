@@ -42,6 +42,13 @@ public class JpaAppointmentRepositoryImpl implements AppointmentRespository {
 	     query.setParameter("id", id);
 	     return (Appointment) query.getSingleResult();
 	}
+	@Override
+	public List<Appointment> getAllAppointments() {
+		// TODO Auto-generated method stub
+		Query query = this.em.createQuery("Select apt FROM Appointment apt left join fetch apt.owner left join fetch apt.vet left join fetch apt.pet");
+		List<Appointment> aptList = query.getResultList();
+		return aptList;
+	}
 	
 	
 

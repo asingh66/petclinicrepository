@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -10,6 +11,9 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pets;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
+import org.springframework.samples.petclinic.repository.AppointmentRespository;
+import org.springframework.samples.petclinic.repository.OwnerRepository;
+import org.springframework.samples.petclinic.repository.jpa.JpaAppointmentRepositoryImpl;
 import org.springframework.samples.petclinic.service.AppointmentService;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,9 @@ public class AppointmentController {
 	private final ClinicService clinicService;
 	private AppointmentService as;
 
+	@Autowired
+	AppointmentRespository aptmntDAO;
+	
 	@Autowired
 	public AppointmentController(ClinicService clinicService, AppointmentService aptService) {
 		this.clinicService = clinicService;
@@ -52,6 +59,14 @@ public class AppointmentController {
 		return null;
 
 	}
+	@RequestMapping(value = "/appointment/list", method = RequestMethod.GET)
+    public String createAptForm(Map<String, Object> model) {
+		List<Appointment>appointment = aptmntDAO.getAllAppointments();
+        model.put("aptlist", appointment);
+		
+//        model.pu("owner", new)
+        return "appointements/aptList";
+    }
 
 	@RequestMapping("/owners/{ownerId}/pet")
 	public @ResponseBody Pets showResourcesPetList(@PathVariable("ownerId") int ownerId) {

@@ -15,7 +15,7 @@
 <petclinic:bodyHeader menuName="vets"/>
 <div class="container-fluid">
     <div class="container xd-container">
-        <h2>Veterinarians</h2>
+        <h2>Appointment List</h2>
 
         <datatables:table id="apts" data="${aptlist}" row="apt" cssClass="table table-striped"
                           pageable="false" info="false">
@@ -24,7 +24,7 @@
             </datatables:column>
             
             <datatables:column title="vet">
-                <c:out value="${apt.vet.name}"/>
+                <c:out value="${apt.vet.firstName}${apt.vet.lastName}"/>
             </datatables:column>
             
             <datatables:column title="status">
