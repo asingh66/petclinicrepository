@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -34,12 +36,12 @@ public class AppointmentController {
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
 	public String returnOwnerAndVet(Map<String, Object> model) {
 		// TODO: Call appopriate service layer
-	    model.put("ownerList", this.clinicService.findOwners());
-		Vets vets = new Vets();
-		vets.getVetList().addAll(this.clinicService.findVets());
-		model.put("vetList", vets);
+	    model.put("owners", this.clinicService.findOwners());
+		//Vets vets = new Vets();
+		//vets.getVetList().addAll(this.clinicService.findVets());
+		model.put("vets", this.clinicService.findVets());
 
-		return "appointment/createAppointment";
+		return "appointements/aptList";
 
 	}
 
@@ -63,13 +65,15 @@ public class AppointmentController {
 
 	}
 
-	@RequestMapping("/owners/{ownerId}/pet")
-	public @ResponseBody Pets showResourcesPetList(@PathVariable("ownerId") int ownerId) {
+	@RequestMapping(value="/owners/{ownerId}/pet", produces="application/JSON")
+	public @ResponseBody List<Pets> showResourcesPetList(@PathVariable("ownerId") int ownerId) {
 		Pets pets = new Pets();
+		Owner o = new Owner();
+		o.setId(ownerId);
 		// TODO: Call Service Layer
-		//pets.getPetList().addAll(this.clinicService.findPets(ownerId));
+		return this.clinicService.findPets(o);
 		
-		return pets;
+		//return pets;
 	}
 
 	@RequestMapping("/vets/{vetId}/appointment")
