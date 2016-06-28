@@ -32,19 +32,29 @@ public class AppointmentController {
 	}
 
 	@RequestMapping(value = "/appointment", method = RequestMethod.GET)
-	public Map<String, Object> returnOwnerAndVet(Map<String, Object> model) {
+	public String returnOwnerAndVet(Map<String, Object> model) {
 		// TODO: Call appopriate service layer
 	    model.put("ownerList", this.clinicService.findOwners());
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.clinicService.findVets());
 		model.put("vetList", vets);
 
-		return model;
+		return "appointment/createAppointment";
 
 	}
 
-	@RequestMapping(value = "/appointment", method = RequestMethod.POST)
-	public String createAppointment(@Valid Appointment apt, BindingResult result, Map<String, Object> model, Vet vet) {
+	@RequestMapping(value = "/appointment", method = RequestMethod.POST, consumes="application/JSON")
+	public String createAppointmentJSON(@Valid Appointment apt, BindingResult result, Map<String, Object> model, Vet vet) {
+		// TODO: Call appropriate Service Layer
+		// model.addAttribute("availableAppointments",
+		// clinicService.getAvailableAppointment(vet));
+		as.createAppointment(apt);
+		return null;
+
+	}
+	
+	@RequestMapping(value = "/appointment", method = RequestMethod.POST, consumes ="application/XML")
+	public String createAppointmentXML(@Valid Appointment apt, BindingResult result, Map<String, Object> model, Vet vet) {
 		// TODO: Call appropriate Service Layer
 		// model.addAttribute("availableAppointments",
 		// clinicService.getAvailableAppointment(vet));
