@@ -52,6 +52,6 @@ public interface ClinicService {
     
     Collection<Owner> findOwners();
     
-    List <Pets> findPets(Owner o);
+    List <Pet> findPets(Owner o);
 
 }

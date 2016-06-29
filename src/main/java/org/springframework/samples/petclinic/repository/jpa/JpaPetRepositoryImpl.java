@@ -15,13 +15,17 @@
  */
 package org.springframework.samples.petclinic.repository.jpa;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Pets;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.stereotype.Repository;
 
@@ -60,4 +64,11 @@ public class JpaPetRepositoryImpl implements PetRepository {
         }
     }
 
-}
+	@Override
+	public List<Pet> findByOwner(Owner o) {
+		Query query = this.em.createNativeQuery("SELECT * from pets where owner_id =:id");
+        query.setParameter("id", o.getId());
+        return (List<Pet>) query.getResultList();
+			}
+	}
+

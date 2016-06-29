@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Appointment;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Pets;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
@@ -66,12 +67,17 @@ public class AppointmentController {
 	}
 
 	@RequestMapping(value="/owners/{ownerId}/pet", produces="application/JSON")
-	public @ResponseBody List<Pets> showResourcesPetList(@PathVariable("ownerId") int ownerId) {
-		Pets pets = new Pets();
+	public @ResponseBody Pets showResourcesPetList(@PathVariable("ownerId") int ownerId) {
+		
+		System.out.println("called");
 		Owner o = new Owner();
 		o.setId(ownerId);
 		// TODO: Call Service Layer
-		return this.clinicService.findPets(o);
+	
+		Pets pets = new Pets();
+		pets.getPetList().addAll(this.clinicService.findPets(o));
+        //return o.getPets();
+		return pets;
 		
 		//return pets;
 	}
