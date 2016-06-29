@@ -82,10 +82,10 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    @Cacheable(value = "owners")
+    //@Cacheable(value = "owners")
     @SuppressWarnings("unchecked")
     public Collection<Owner> findAll() {
-        return this.em.createQuery("SELECT distinct owner FROM Owners owner ORDER BY owner.lastName, owner.firstName").getResultList();
+        return this.em.createQuery("SELECT distinct owner FROM Owner owner ORDER BY owner.lastName, owner.firstName").getResultList();
     }
 
 }

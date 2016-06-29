@@ -82,6 +82,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 			ax.setSlot("1");
 			return ax;
 		}
+
+	@Override
+	public void createAppointment(Appointment a) {
+		// TODO Auto-generated method stub
+		ar.save(a);
+		
+	}
 	
 	
 }
