@@ -118,9 +118,8 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
-	public List<Pets> findPets(Owner o) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Pet> findPets(Owner o) {
+		return petRepository.findByOwner(o);
 	}
 
 

@@ -32,6 +32,7 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Pets;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
@@ -129,5 +130,11 @@ public class JdbcPetRepositoryImpl implements PetRepository {
             .addValue("type_id", pet.getType().getId())
             .addValue("owner_id", pet.getOwner().getId());
     }
+
+	@Override
+	public List<Pet> findByOwner(Owner o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
