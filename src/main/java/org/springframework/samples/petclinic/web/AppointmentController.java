@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.web;
 
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,9 @@ import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pets;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
+import org.springframework.samples.petclinic.repository.AppointmentRespository;
+import org.springframework.samples.petclinic.repository.OwnerRepository;
+import org.springframework.samples.petclinic.repository.jpa.JpaAppointmentRepositoryImpl;
 import org.springframework.samples.petclinic.service.AppointmentService;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
@@ -27,6 +31,11 @@ public class AppointmentController {
 	private final ClinicService clinicService;
 	private AppointmentService as;
 
+	@Autowired
+	OwnerRepository ownerDAO;
+	@Autowired
+	AppointmentRespository aptmntDAO;
+	
 	@Autowired
 	public AppointmentController(ClinicService clinicService, AppointmentService aptService) {
 		this.clinicService = clinicService;
@@ -63,6 +72,24 @@ public class AppointmentController {
 		as.createAppointment(apt);
 		return null;
 
+	}
+	@RequestMapping(value = "/appointment/list", method = RequestMethod.GET)
+    public String createAptForm(Map<String, Object> model) {
+        model.put("aptlist", aptmntDAO.getAllAppointments());
+		
+        return "appointements/allAptmnts";
+    }
+	
+	
+	
+	@RequestMapping(value="/createAppointment/{owner.id}",  method = RequestMethod.GET)
+	public String createAppointmentbyOwnerId(Map<String, Object> model, @PathVariable("owner.id") int ownerId) {
+		// TODO: Call Service Layer
+		Owner owner =this.clinicService.findOwnerById(ownerId);
+		model.put("pets",owner.getPets());
+		model.put("vets", this.clinicService.findVets());
+		model.put("owners", owner);
+		return "appointements/aptList1";
 	}
 
 	@RequestMapping(value="/owners/{ownerId}/pet", produces="application/JSON")

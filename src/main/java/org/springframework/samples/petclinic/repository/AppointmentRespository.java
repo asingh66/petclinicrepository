@@ -12,4 +12,6 @@ public interface AppointmentRespository {
 	public List<Appointment> getAppointmentsByVet(Vet v);
 	
 	public Appointment findById(int id);
+	
+	public List<Appointment> getAllAppointments();
 }

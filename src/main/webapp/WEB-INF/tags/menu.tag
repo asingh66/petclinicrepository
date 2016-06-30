@@ -44,6 +44,15 @@
                         <c:set var="cssMenu" value=""/>
                     </c:otherwise>
                 </c:choose>
+                <li class="${cssMenu}"><a href="<spring:url value="/appointment/list.html" htmlEscape="true" />"><span> Appointment List</span></a></li>
+                <c:choose>
+                    <c:when test="${name eq 'vets'}">
+                        <c:set var="cssMenu" value="active"/>
+                    </c:when>
+                    <c:otherwise>
+                        <c:set var="cssMenu" value=""/>
+                    </c:otherwise>
+                </c:choose>
                 <li class="${cssMenu}"><a href="<spring:url value="/vets.html" htmlEscape="true" />"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span><span> Veterinarians</span></a></li>
                 <c:choose>
                     <c:when test="${name eq 'error'}">
