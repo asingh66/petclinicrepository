@@ -32,6 +32,8 @@ public class AppointmentController {
 	private AppointmentService as;
 
 	@Autowired
+	OwnerRepository ownerDAO;
+	@Autowired
 	AppointmentRespository aptmntDAO;
 	
 	@Autowired
@@ -73,12 +75,22 @@ public class AppointmentController {
 	}
 	@RequestMapping(value = "/appointment/list", method = RequestMethod.GET)
     public String createAptForm(Map<String, Object> model) {
-		List<Appointment>appointment = aptmntDAO.getAllAppointments();
-        model.put("aptlist", appointment);
+        model.put("aptlist", aptmntDAO.getAllAppointments());
 		
-//        model.pu("owner", new)
-        return "appointements/aptList";
+        return "appointements/allAptmnts";
     }
+	
+	
+	
+	@RequestMapping(value="/createAppointment/{owner.id}",  method = RequestMethod.GET)
+	public String createAppointmentbyOwnerId(Map<String, Object> model, @PathVariable("owner.id") int ownerId) {
+		// TODO: Call Service Layer
+		Owner owner =this.clinicService.findOwnerById(ownerId);
+		model.put("pets",owner.getPets());
+		model.put("vets", this.clinicService.findVets());
+		model.put("owners", owner);
+		return "appointements/aptList1";
+	}
 
 	@RequestMapping(value="/owners/{ownerId}/pet", produces="application/JSON")
 	public @ResponseBody List<Pets> showResourcesPetList(@PathVariable("ownerId") int ownerId) {
