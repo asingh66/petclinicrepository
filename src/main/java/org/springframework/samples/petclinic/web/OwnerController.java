@@ -108,7 +108,7 @@ public class OwnerController {
             return "owners/ownersList";
         }
     }
-
+// hello world this is dhana
     @RequestMapping(value = "/owners/{ownerId}/edit", method = RequestMethod.GET)
     public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
         Owner owner = this.clinicService.findOwnerById(ownerId);
@@ -128,7 +128,7 @@ public class OwnerController {
     }
 
     /**
-     * Custom handler for displaying an owner.
+     * Custom handler for displaying an owner. dhana
      *
      * @param ownerId the ID of the owner to display
      * @return a ModelMap with the model attributes for the view
